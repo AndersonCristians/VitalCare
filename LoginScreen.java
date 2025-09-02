@@ -1,64 +1,69 @@
-
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class LoginScreen extends JFrame {
+
     public LoginScreen() {
-        setTitle("Login");
-        setSize(300, 500);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Login - VitalCare");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(350, 400);
         setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground(Color.WHITE);
-        panel.setBorder(BorderFactory.createEmptyBorder(50, 20, 20, 20));
+        JLabel title = new JLabel("Login");
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title.setFont(new Font("SansSerif", Font.BOLD, 22));
+        title.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 
-        JLabel loginLabel = new JLabel("Login", SwingConstants.CENTER);
-        loginLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        loginLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
+        JTextField txtUser = new JTextField();
+        txtUser.setMaximumSize(new Dimension(200, 30));
+        txtUser.setAlignmentX(Component.CENTER_ALIGNMENT);
+        txtUser.setBorder(BorderFactory.createTitledBorder("Usuário"));
 
-        JTextField userField = new JTextField();
-        userField.setMaximumSize(new Dimension(250, 30));
-        userField.setAlignmentX(Component.CENTER_ALIGNMENT);
-        userField.setBorder(BorderFactory.createTitledBorder("Usuário ou email"));
+        JPasswordField txtPass = new JPasswordField();
+        txtPass.setMaximumSize(new Dimension(200, 30));
+        txtPass.setAlignmentX(Component.CENTER_ALIGNMENT);
+        txtPass.setBorder(BorderFactory.createTitledBorder("Senha"));
 
-        JPasswordField passField = new JPasswordField();
-        passField.setMaximumSize(new Dimension(250, 30));
-        passField.setAlignmentX(Component.CENTER_ALIGNMENT);
-        passField.setBorder(BorderFactory.createTitledBorder("Senha"));
+        JButton btnLogin = new JButton("Entrar");
+        btnLogin.setAlignmentX(Component.CENTER_ALIGNMENT);
+        estilizarBotao(btnLogin);
 
-        JLabel forgotLabel = new JLabel("Esqueceu a senha?", SwingConstants.CENTER);
-        forgotLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        forgotLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        forgotLabel.setForeground(Color.BLUE);
+        // ação do botão de login
+        btnLogin.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, "Login ainda não implementado.");
+        });
 
-        JButton loginButton = new JButton("ENTRAR");
-        loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        loginButton.setBackground(new Color(0, 122, 255));
-        loginButton.setForeground(Color.WHITE);
-        loginButton.setFocusPainted(false);
-        loginButton.setMaximumSize(new Dimension(200, 40));
+        // Label de cadastro
+        JLabel lblRegister = new JLabel("Não tem conta? Clique aqui");
+        lblRegister.setForeground(Color.BLUE);
+        lblRegister.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblRegister.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel noAccount = new JLabel("Não tem conta? Clique aqui", SwingConstants.CENTER);
-        noAccount.setAlignmentX(Component.CENTER_ALIGNMENT);
-        noAccount.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        noAccount.setForeground(Color.BLUE);
+        lblRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                dispose(); // fecha login
+                new CadastroScreen(); // abre tela de cadastro
+            }
+        });
 
-        panel.add(loginLabel);
-        panel.add(Box.createVerticalStrut(20));
-        panel.add(userField);
-        panel.add(Box.createVerticalStrut(10));
-        panel.add(passField);
-        panel.add(Box.createVerticalStrut(10));
-        panel.add(forgotLabel);
-        panel.add(Box.createVerticalStrut(20));
-        panel.add(loginButton);
-        panel.add(Box.createVerticalStrut(20));
-        panel.add(noAccount);
+        // adicionar componentes
+        add(title);
+        add(txtUser);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(txtPass);
+        add(Box.createRigidArea(new Dimension(0, 20)));
+        add(btnLogin);
+        add(Box.createRigidArea(new Dimension(0, 20)));
+        add(lblRegister);
 
-        add(panel, BorderLayout.CENTER);
         setVisible(true);
+    }
+
+    private void estilizarBotao(JButton botao) {
+        botao.setBackground(new Color(0, 122, 255));
+        botao.setForeground(Color.WHITE);
+        botao.setFocusPainted(false);
+        botao.setMaximumSize(new Dimension(200, 40));
     }
 }

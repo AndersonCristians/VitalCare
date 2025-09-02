@@ -1,7 +1,6 @@
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import javax.swing.*;
 
 public class WelcomeScreen extends JFrame {
     public WelcomeScreen() {
@@ -31,18 +30,24 @@ public class WelcomeScreen extends JFrame {
         startButton.setForeground(Color.WHITE);
         startButton.setFocusPainted(false);
         startButton.setMaximumSize(new Dimension(200, 40));
-
+        
         JLabel noAccount = new JLabel("Não tem conta? Clique aqui", SwingConstants.CENTER);
         noAccount.setAlignmentX(Component.CENTER_ALIGNMENT);
         noAccount.setFont(new Font("SansSerif", Font.PLAIN, 12));
         noAccount.setForeground(Color.BLUE);
 
-        startButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                new LoginScreen();
-            }
-        });
+        JLabel lblRegister = new JLabel("Não tem conta? Clique aqui");
+        lblRegister.setForeground(Color.BLUE);
+        lblRegister.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        lblRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+            dispose(); // fecha tela de login
+            new CadastroScreen(); // abre tela de cadastro
+    }
+});
+     
 
         centerPanel.add(welcomeLabel);
         centerPanel.add(Box.createVerticalStrut(10));
