@@ -1,17 +1,21 @@
+
 import java.awt.*;
 import javax.swing.*;
+import static javax.swing.BoxLayout.Y_AXIS;
 
 public class CadastroFamiliarScreen extends JFrame {
+
     private JTextField txtNome, txtEmail, txtCelular, txtCpfIdoso, txtParentesco;
-    private JPasswordField txtSenha, txtConfirmaSenha;
-    private JCheckBox chkTermos;
+    private final JPasswordField txtSenha;
+    private final JPasswordField txtConfirmaSenha;
+    private final JCheckBox chkTermos;
 
     public CadastroFamiliarScreen() {
         setTitle("Cadastro Familiar");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 450);
         setLocationRelativeTo(null);
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        setLayout(new BoxLayout(getContentPane(), Y_AXIS));
 
         JLabel title = new JLabel("Cadastro Familiar", SwingConstants.CENTER);
         title.setFont(new Font("SansSerif", Font.BOLD, 22));
@@ -73,5 +77,9 @@ public class CadastroFamiliarScreen extends JFrame {
         JOptionPane.showMessageDialog(this, "Cadastro do familiar realizado com sucesso!");
         dispose();
         new LoginScreen();
+    }
+
+    public JPasswordField getTxtSenha() {
+        return txtSenha;
     }
 }
